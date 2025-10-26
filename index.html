@@ -1,57 +1,281 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>StudyWithJax</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>StudyWithJax — Jazper B. Cipres</title>
   <style>
-    body { font-family: Arial, sans-serif; background: #e8f4fd; color: #222; text-align: center; margin: 0; padding: 0; }
-    header { background: #61a5ff; color: white; padding: 20px 10px; }
-    h1 { margin: 0; }
-    section { padding: 30px 20px; max-width: 800px; margin: auto; }
-    .card { background: white; border-radius: 10px; padding: 20px; margin: 20px auto; box-shadow: 0 3px 6px rgba(0,0,0,0.1); }
-    h2 { color: #2573e0; }
-    footer { background: #61a5ff; color: white; padding: 15px; }
+    :root{
+      --bg:#0b1220;
+      --card:#0f1724;
+      --muted:#97a6c1;
+      --light:#e6f2ff;
+      --accent:#61a5ff;
+      --white:#f8fafc;
+      --glass: rgba(255,255,255,0.03);
+    }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;color:var(--white);background:linear-gradient(180deg,var(--bg),#07101a);-webkit-font-smoothing:antialiased}
+    a{color:inherit}
+    header{background:linear-gradient(90deg, rgba(97,165,255,0.12), rgba(97,165,255,0.04));backdrop-filter: blur(6px);padding:28px 16px;border-bottom:1px solid rgba(255,255,255,0.03)}
+    .container{max-width:980px;margin:0 auto;padding:20px}
+    .brand{display:flex;gap:14px;align-items:center}
+    .avatar{width:72px;height:72px;border-radius:12px;background:linear-gradient(180deg,var(--accent),#3b87f0);display:flex;align-items:center;justify-content:center;font-weight:700;color:var(--white);box-shadow:0 6px 18px rgba(0,0,0,0.5)}
+    h1{margin:0;font-size:20px}
+    p.lead{margin:6px 0 0;color:var(--muted);font-size:14px}
+    .nav{margin-left:auto;display:flex;gap:10px}
+    .btn{background:var(--accent);color:#062433;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600;box-shadow:0 6px 18px rgba(97,165,255,0.12)}
+    main{padding:28px 0}
+    .grid{display:grid;gap:20px}
+    .two-col{grid-template-columns:1fr 360px}
+    .card{background:var(--card);border-radius:12px;padding:18px;box-shadow:0 8px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.02)}
+    h2.section{color:var(--light);margin:0 0 12px;font-size:18px}
+    .muted{color:var(--muted);font-size:14px}
+    .subjects{display:flex;flex-wrap:wrap;gap:10px;margin-top:8px}
+    .chip{background:var(--glass);padding:8px 10px;border-radius:999px;font-size:13px;color:var(--light);border:1px solid rgba(255,255,255,0.02)}
+    .price-list{list-style:none;padding:0;margin:0}
+    .price-list li{display:flex;justify-content:space-between;padding:10px 0;border-bottom:1px dashed rgba(255,255,255,0.02);align-items:center}
+    .cta-row{display:flex;gap:10px;margin-top:14px}
+    .btn-outline{border:1px solid rgba(255,255,255,0.06);padding:10px 12px;border-radius:10px;color:var(--light);background:transparent}
+    .testimonials{display:flex;flex-direction:column;gap:10px}
+    .test-card{background:linear-gradient(180deg, rgba(97,165,255,0.03), transparent);padding:12px;border-radius:10px}
+    .contact-list p{margin:6px 0;color:var(--muted)}
+    footer{text-align:center;padding:18px 10px;color:var(--muted);font-size:13px}
+    form input, form select, form textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:var(--white);margin-top:8px}
+    .small{font-size:13px;color:var(--muted)}
+    .store-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+    .store-item{padding:12px;border-radius:10px;background:rgba(255,255,255,0.02);display:flex;flex-direction:column;gap:8px}
+    .price{font-weight:700}
+    .footer-mini{display:flex;justify-content:center;gap:12px;color:var(--muted);margin-top:8px}
+    @media(max-width:880px){
+      .two-col{grid-template-columns:1fr}
+      .nav{display:none}
+      .store-grid{grid-template-columns:1fr}
+    }
+    /* small toast */
+    .toast{position:fixed;left:16px;bottom:16px;background:#0b2b3a;color:var(--light);padding:10px 14px;border-radius:8px;box-shadow:0 8px 24px rgba(0,0,0,0.6);display:none}
   </style>
 </head>
 <body>
   <header>
-    <h1>StudyWithJax</h1>
-    <p>Affordable tutoring and reviewers for students 📚</p>
+    <div class="container" style="display:flex;align-items:center">
+      <div class="brand">
+        <div class="avatar">JB</div>
+        <div>
+          <h1>StudyWithJax — Jazper B. Cipres</h1>
+          <p class="lead">Student | Aspiring Researcher | Songwriter · Highest Honor student</p>
+        </div>
+      </div>
+
+      <nav class="nav" aria-label="main navigation">
+        <a class="btn" href="#booking">Book a Session</a>
+        <a class="btn-outline" href="#store">Reviewers Store</a>
+      </nav>
+    </div>
   </header>
 
-  <section>
-    <div class="card">
-      <h2>About</h2>
-      <p>Hi! I’m Jax — a Highest Honor student who loves helping others learn. StudyWithJax offers one-on-one tutoring and downloadable reviewers made simple, effective, and budget-friendly.</p>
-    </div>
+  <main class="container">
+    <div class="grid two-col">
+      <!-- Left content -->
+      <div class="grid">
+        <section class="card">
+          <h2 class="section">About Me</h2>
+          <p class="muted">I’m a 17-year-old senior high school student passionate about science, music, and learning new skills. I aim to inspire others through creativity and curiosity. I offer 1-on-1 tutoring and downloadable reviewers that are simple, effective, and student-friendly.</p>
 
-    <div class="card">
-      <h2>Subjects Offered</h2>
-      <p>Elementary · Junior High · Senior High</p>
-      <p>Math | Science | English | Filipino | AP | Research</p>
-    </div>
+          <div style="margin-top:14px">
+            <h3 style="margin:0 0 8px;color:var(--light)">What I teach</h3>
+            <div class="subjects">
+              <div class="chip">Math</div>
+              <div class="chip">English</div>
+              <div class="chip">Science</div>
+              <div class="chip">Filipino</div>
+              <div class="chip">Araling Panlipunan</div>
+              <div class="chip">Research Skills</div>
+            </div>
+          </div>
+        </section>
 
-    <div class="card">
-      <h2>Pricing</h2>
-      <ul style="list-style:none; padding:0;">
-        <li>📘 Reviewers – PHP 50–150</li>
-        <li>🧠 Online Tutoring (per hour) – PHP 120–200</li>
-        <li>💬 Study Package (reviewer + session) – PHP 250</li>
-      </ul>
-      <p>Payments accepted via GCash or Maya 💙</p>
-    </div>
+        <section id="store" class="card">
+          <h2 class="section">Reviewers Store</h2>
+          <p class="small">All reviewers are downloadable PDFs. Payments via GCash or Maya — confirm by sending proof after payment.</p>
 
-    <div class="card">
-      <h2>Contact</h2>
-      <p>Message me to book a session or request a custom reviewer!</p>
-      <p><b>Email:</b> studywithjax@gmail.com</p>
-      <p><b>GCash/Maya:</b> 09XXXXXXXXX</p>
+          <div class="store-grid" style="margin-top:12px">
+            <div class="store-item">
+              <div><strong>Elementary - Math Reviewer</strong><div class="small">PDF, 12 pages</div></div>
+              <div class="price">₱50</div>
+              <button class="btn-outline" onclick="addToCart('Elementary - Math Reviewer',50)">Add to cart</button>
+            </div>
+
+            <div class="store-item">
+              <div><strong>High School - Math Reviewer</strong><div class="small">PDF, 18 pages</div></div>
+              <div class="price">₱70</div>
+              <button class="btn-outline" onclick="addToCart('High School - Math Reviewer',70)">Add to cart</button>
+            </div>
+
+            <div class="store-item">
+              <div><strong>Senior High - Physics Reviewer</strong><div class="small">PDF, 22 pages</div></div>
+              <div class="price">₱90</div>
+              <button class="btn-outline" onclick="addToCart('Senior High - Physics Reviewer',90)">Add to cart</button>
+            </div>
+
+            <div class="store-item">
+              <div><strong>English - Reading Reviewer</strong><div class="small">PDF, 14 pages</div></div>
+              <div class="price">₱70</div>
+              <button class="btn-outline" onclick="addToCart('English - Reading Reviewer',70)">Add to cart</button>
+            </div>
+          </div>
+
+          <div style="margin-top:12px" class="card" id="cartCard">
+            <strong>Cart</strong>
+            <div id="cartList" style="margin-top:8px" class="small muted">No items yet.</div>
+            <div style="display:flex;gap:8px;margin-top:10px">
+              <button class="btn" onclick="openCheckout()" id="checkoutBtn" style="display:none">Checkout</button>
+              <button class="btn-outline" onclick="clearCart()">Clear</button>
+            </div>
+          </div>
+        </section>
+
+        <section id="booking" class="card">
+          <h2 class="section">Book a Session</h2>
+          <p class="small">Sessions are 1-on-1 via Google Meet or Zoom. First-time students get a short free diagnostic.</p>
+
+          <form id="bookingForm" onsubmit="submitBooking(event)" style="margin-top:12px">
+            <input required name="name" placeholder="Full name" />
+            <input required name="email" placeholder="Email" type="email" />
+            <select required name="grade">
+              <option value="">Select grade level</option>
+              <option>Elementary</option>
+              <option>High School</option>
+              <option>Senior High School</option>
+            </select>
+            <select required name="subject">
+              <option value="">Select subject</option>
+              <option>Math</option>
+              <option>English</option>
+              <option>Science</option>
+              <option>Filipino</option>
+              <option>Araling Panlipunan</option>
+            </select>
+            <input required name="date" type="date" />
+            <input required name="time" type="time" />
+            <textarea name="note" placeholder="Optional: lesson goals or topics (e.g., 'algebra review')" rows="3"></textarea>
+            <div style="margin-top:10px;display:flex;gap:8px">
+              <button class="btn" type="submit">Send Booking Request</button>
+              <button type="button" class="btn-outline" onclick="document.getElementById('bookingForm').reset()">Clear</button>
+            </div>
+            <p class="small" style="margin-top:8px">Rates: Elementary ₱150/hr · High School ₱200/hr · Senior High ₱250/hr</p>
+          </form>
+
+          <div id="bookingMsg" style="display:none;margin-top:10px;background:rgba(97,165,255,0.06);padding:10px;border-radius:8px;color:var(--light)"></div>
+        </section>
+      </div>
+
+      <!-- Right sidebar -->
+      <aside>
+        <div class="card">
+          <h2 class="section">Quick Pricing</h2>
+          <ul class="price-list">
+            <li><span>Elementary (1-on-1)</span><strong>₱150/hr</strong></li>
+            <li><span>High School (1-on-1)</span><strong>₱200/hr</strong></li>
+            <li><span>Senior High (1-on-1)</span><strong>₱250/hr</strong></li>
+            <li><span>Reviewer files</span><strong>₱50–₱150</strong></li>
+          </ul>
+
+          <div style="margin-top:12px">
+            <h3 style="margin:0 0 8px;color:var(--light)">Testimonials</h3>
+            <div class="testimonials">
+              <div class="test-card">
+                <strong>Romela Bendal</strong>
+                <div class="small" style="margin-top:6px">“Magaling magturo. Naiintindihan ko lagi lahat ng lesson.”</div>
+              </div>
+              <div class="test-card">
+                <strong>Jan Gabriel Barbadillo</strong>
+                <div class="small" style="margin-top:6px">“Pinapasimple niya ang lesson kaya mas madali ko naiintindihan.”</div>
+              </div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px">
+            <h3 style="margin:0 0 8px;color:var(--light)">Contact</h3>
+            <div class="contact-list small">
+              <p>📞 +63 931 884 0101</p>
+              <p>📧 jazpercipres80@gmail.com</p>
+              <p>Payments: GCash or Maya (send proof to contact after payment)</p>
+            </div>
+            <div style="margin-top:10px" class="cta-row">
+              <a class="btn" href="mailto:jazpercipres80@gmail.com">Email Me</a>
+              <a class="btn-outline" href="#booking">Book Now</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="margin-top:14px;text-align:center">
+          <h3 style="margin:0 0 8px;color:var(--light)">Why choose me?</h3>
+          <p class="small">I’m a student tutor and a Highest Honor achiever — I teach with study-tested methods and explain lessons in a simple, friendly way.</p>
+        </div>
+      </aside>
     </div>
-  </section>
+  </main>
 
   <footer>
-    <p>© 2025 StudyWithJax. All rights reserved.</p>
+    <div class="container">
+      <div>© <span id="year"></span> StudyWithJax — Jazper B. Cipres</div>
+      <div class="footer-mini">Built for students · Payments via GCash / Maya</div>
+    </div>
   </footer>
+
+  <div class="toast" id="toast"></div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple cart
+    let cart = [];
+    function addToCart(title, price){
+      cart.push({title, price});
+      renderCart();
+      showToast(`${title} added to cart`);
+    }
+
+    function renderCart(){
+      const el = document.getElementById('cartList');
+      if(!cart.length){ el.innerHTML = '<div class="small muted">No items yet.</div>'; document.getElementById('checkoutBtn').style.display='none'; return; }
+      let html = '<ul style="list-style:none;padding:0;margin:0">';
+      let total = 0;
+      cart.forEach((it, i)=>{ total+=it.price; html += `<li style="display:flex;justify-content:space-between;padding:6px 0;border-bottom:1px dashed rgba(255,255,255,0.02)"><span>${it.title}</span><span>₱${it.price}</span></li>`})
+      html += `</ul><div style="margin-top:8px;font-weight:700">Total: ₱${total}</div>`;
+      el.innerHTML = html;
+      document.getElementById('checkoutBtn').style.display='inline-block';
+    }
+
+    function clearCart(){ cart = []; renderCart(); showToast('Cart cleared'); }
+    function openCheckout(){
+      if(!cart.length) return showToast('Cart is empty');
+      let total = cart.reduce((s,i)=>s+i.price,0);
+      const msg = `To complete purchase: send ₱${total} to GCash or Maya and email proof to jazpercipres80@gmail.com.`;
+      alert(msg);
+    }
+
+    function showToast(txt){
+      const t = document.getElementById('toast');
+      t.textContent = txt; t.style.display='block';
+      setTimeout(()=> t.style.display='none',2500);
+    }
+
+    // Booking form (no backend) - show confirmation message
+    function submitBooking(e){
+      e.preventDefault();
+      const form = e.target;
+      const name = form.name.value;
+      const grade = form.grade.value;
+      const subject = form.subject.value;
+      const date = form.date.value;
+      const time = form.time.value;
+      document.getElementById('bookingMsg').style.display='block';
+      document.getElementById('bookingMsg').textContent = `Booking request sent. Thanks ${name}! I will contact you at ${form.email.value} to confirm and share payment details.`;
+      form.reset();
+      showToast('Booking request sent');
+    }
+  </script>
 </body>
 </html>
